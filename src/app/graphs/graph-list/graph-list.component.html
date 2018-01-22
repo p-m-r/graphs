@@ -1,1 +1,13 @@
-<h1>This is the graph list component</h1>
+<div class="panel panel-default">
+  	<div class="panel-body">
+		<button type="button" class="btn btn-success btn-block" (click)="onCreate()">Create graph</button>
+		<create-graph *ngIf="create" (graphCreated)="importGraphs()"></create-graph>
+		<div class="list-group">
+		  	<graph-item
+		  		*ngFor="let g of graphs; let i = index" [graph]="g"
+		  		[selected]="selectedGraph(g)" 
+		  		(click)="onSelect(i)">	
+		  	</graph-item>
+		</div>
+	</div>
+</div>

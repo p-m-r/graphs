@@ -1,0 +1,23 @@
+<table class="adjacency-matrix" *ngIf="graph">
+	<thead>
+		<tr >
+			<td></td>
+			<td></td>
+			<td [attr.colspan]="graph.numberOfVertices" class="header">neighbors</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="header" [attr.width]="colWidth" *ngFor="let vertex of graph.vertices">{{vertex.name}}</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr> 
+			<th [attr.rowspan]="graph.numberOfVertices + 1" class="vertical-header">vertices</th>
+		</tr>
+		<tr *ngFor="let vertex1 of graph.vertices">
+			<th>{{vertex1.name}}:</th>
+			<td [attr.width]="colWidth" *ngFor="let vertex2 of graph.vertices">{{getEdgeWeight(vertex1, vertex2)}}</td>
+		</tr>
+	</tbody>
+</table>

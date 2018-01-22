@@ -1,0 +1,50 @@
+.create-form { 
+	padding: 10px; 
+}
+.submit-btn { 
+	margin-right: 10px; 
+}
+.flex {
+	display: flex;
+	justify-content: flex-start;
+}
+.flex > .flex-child:first-child {
+	margin-left: 10px;
+}
+.flex > .flex-child:not(:first-child) {
+	display: inline-block;
+	margin-left: 20px;
+}
+.weight-input {
+	display: inline-block;
+	max-width: 90px;
+	white-space: nowrap;
+	text-align: center;
+}
+.weight-input:nth-child(2) {
+	margin-left: 7px;
+}
+.secondary-checkbox {
+	margin-left: 20px;
+}
+.tertiary-input {
+	margin: 0 5px 0 30px;
+	max-width: 90px;
+	display: inline-block;
+}
+.warning {
+	color: rgb(169,68,66);
+	text-align: right;
+}
+@media (min-width: 992px) {
+	.flex {  
+		justify-content: space-between; 
+	}
+	.flex > .flex-child:first-child {
+		margin-left: 0;
+	}
+	.flex > .flex-child:not(:first-child) {
+		margin-left: 0;
+	}
+	
+}

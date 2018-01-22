@@ -2,7 +2,7 @@
 	"compilerOptions": {
 		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
-		"experiemtalDecorators": true,
+		"experimentalDecorators": true,
 		"target": "es5",
 		"lib": [
 			"es5",

@@ -1,0 +1,13 @@
+.incidence-matrix {
+	margin: 20px auto 10px auto;
+	border-collapse: separate;
+	border-spacing: 8px;
+	text-align: center;
+	transform: translateX(-13px);
+}
+.header {
+	font-weight: bold;
+}
+.vertical-header {
+	transform: rotate(-90deg);
+}

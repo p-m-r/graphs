@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  	<div class="panel-body">
+  		<div class="flex">
+			<!--<button type="button" class="btn btn-default" (click)="setDisplayMode('draw')">Draw</button>-->
+			<button type="button" class="btn btn-default" (click)="setDisplayMode('adjacency-list')">Adjacency List</button>
+			<button type="button" class="btn btn-default" (click)="setDisplayMode('adjacency-matrix')">Adjacency Matrix</button>
+			<button type="button" class="btn btn-default" (click)="setDisplayMode('incidence-matrix')">Incidence Matrix</button>
+		</div>
+		<p *ngIf="displayMode=='draw'">Draw</p>
+		<adjacency-list *ngIf="displayMode=='adjacency-list'"></adjacency-list>
+		<adjacency-matrix *ngIf="displayMode=='adjacency-matrix'">Adjacency Matrix</adjacency-matrix>
+		<incidence-matrix *ngIf="displayMode=='incidence-matrix'">Incidence Matrix</incidence-matrix>
+		<div *ngIf="editService.kosaraju" class="graph-info">
+		Strong components:
+			<ul>
+				<li *ngFor="let component of editService.kosarajuData">
+					[
+					<span *ngFor="let vertex of component; let i = index">
+						{{vertex.name}}
+						<span *ngIf="i < component.length - 1">, </span>
+					</span>
+					]
+				</li>
+			</ul>
+		</div>
+		<div *ngIf="editService.bellmanFord" class="graph-info">
+			Bellman-Ford for vertex {{editService.bellmanFordData[0]}}:
+			<ul>
+				<li *ngFor="let vertex of editService.bellmanFordData[1]; let i = index">
+					{{vertex}}: dist. {{editService.bellmanFordData[2][i]}}, path {{editService.bellmanFordData[3][i]}}
+				</li>
+			</ul>
+		</div>
+		<div *ngIf="editService.johnson" class="graph-info">
+			Johnson's algorithm for vertex {{editService.johnsonData[0]}}:
+			<ul>
+				<li *ngFor="let vertex of editService.johnsonData[1]; let i = index">
+					{{vertex}}: dist. {{editService.johnsonData[2][i]}}, path {{editService.johnsonData[3][i]}}
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

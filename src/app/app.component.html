@@ -1,7 +1,13 @@
-<h1>HEllo World!</h1>
-<hr>
-<a routerLink="/">Home</a>
-<a routerLink="/graph-list">List</a>
-<a routerLink="/graph-menu">Menu</a>
-<hr>
-<router-outlet></router-outlet>
+<div class="container content">
+	<div class="row">
+		<div class="col-md-3">
+   			<graph-list></graph-list>
+		</div>
+		<div class="col-md-6">
+			<display></display>
+		</div>
+		<div class="col-md-3">
+			<graph-menu></graph-menu>
+		</div>
+	</div>
+</div>

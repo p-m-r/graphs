@@ -1,0 +1,107 @@
+
+    <form class="create-form clearfix" #f="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input 
+          type="text" 
+          id="name"
+          placeholder="Name of your graph"
+          [(ngModel)]="name"
+          name="name" 
+          class="form-control"
+        >
+      </div>
+      <div class="form-group">
+        <label for="vertices">Number of vertices</label>
+        <p>{{f.value.vertices}}</p>
+        <input 
+          type="range"  
+          max="12" 
+          id="vertices" 
+          required
+          [(ngModel)]="vertices"
+          (ngModelChange)="calculateEdges()"
+          name="vertices"
+          >
+      </div>
+      <div class="form-group flex">
+      	<div class="flex-child">
+	        <input 
+            type="radio" 
+            id="probability" 
+            name="mode"
+            value="probability" 
+            [(ngModel)]="mode"
+            >
+	        <label for="probability">probability</label>
+	      </div>
+	      <div class="flex-child">
+	        <input 
+            type="radio" 
+            id="edges" 
+            name="mode"
+            value="edges"
+            [(ngModel)]="mode"
+            [attr.disabled]="stronglyConnected ? true : null"
+            >
+	        <label for="edges">edges</label>
+	      </div>
+      </div>
+      <div class="form-group">
+        <p *ngIf="f.value.mode == 'probability'">{{probability}}%</p>
+        <p *ngIf="f.value.mode == 'edges'">{{edges}}</p>
+      	<input 
+          type="range" 
+          max="100"
+          [(ngModel)]="probability"
+          (ngModelChange)="calculateEdges()"
+          name="connections"
+          >
+      </div>
+      <div class="form-group">
+        <input 
+            type="checkbox" 
+            id="weighted" 
+            name="weighted"
+            [(ngModel)]="weighted"
+            >
+          <label for="weighted">weighted</label>
+      </div>
+      <div class="flex" *ngIf="weighted">
+        <div class="form-group weight-input">
+          <label for="minWeight">min weight</label>
+          <input type="number" name="minWeight" id="minWeight" [(ngModel)]="minWeight" class="form-control">
+        </div>
+        <div class="form-group weight-input">
+          <label for="maxWeight">max weight</label>
+          <input type="number" name="maxWeight" id="maxWeight" [(ngModel)]="maxWeight" class="form-control">
+        </div>
+      </div>
+      <div class="form-group">
+        <input 
+            type="checkbox" 
+            id="directed" 
+            name="directed"
+            [(ngModel)]="directed"
+            (ngModelChange)="calculateEdges()"
+            (ngModelChange)="setStronglyConnected()"
+            >
+          <label for="directed">directed</label>
+      </div>
+      <div *ngIf="directed" class="form-group secondary-checkbox">
+        <input 
+            type="checkbox" 
+            id="stronglyConnected" 
+            name="stronglyConnected"
+            [(ngModel)]="stronglyConnected"
+            (ngModelChange)="setMode()"
+            >
+          <label for="stronglyConnected">strongly connected</label>
+      </div>
+      <div *ngIf="stronglyConnected" class="form-group">
+          <input type="number" name="trialsNumber" id="trialsNumber" [(ngModel)]="trialsNumber" class="form-control tertiary-input">
+          <label for="trialsNumber">trials</label>
+      </div>
+      <p *ngIf="message" class="warning">Couldn't create graph.</p>
+      <button type="submit" class="btn btn-success pull-right submit-btn">Create</button>
+    </form>

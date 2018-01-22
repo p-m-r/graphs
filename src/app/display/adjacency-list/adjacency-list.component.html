@@ -1,0 +1,33 @@
+<figure class="list-container" *ngIf="graph">
+	<figcaption class="caption">
+		<strong>vertex: </strong>
+		<span [ngClass]="{'arrow': graph.weighted }">&rarr;</span> 
+		<span *ngIf="graph.weighted" class="weight">
+			(weight)
+		</span>
+		neighbor
+	</figcaption>
+	<div class="inner-container">
+		<ul class="adjacency-list">
+			<li *ngFor="let vertex of graph.vertices">
+				<span class="vertex-name">{{vertex.name}}:</span>
+				<ul>
+					<li *ngFor="let neighbor of vertex.neighbors; let i = index" class="neighbor">
+						<span *ngIf="i < vertex.neighbors.length - 0" class="relative">
+							&rarr;
+							<span *ngIf="graph.weighted" class="edge-weight">
+								({{neighbor.edgeWeight}})
+							</span>
+						</span>
+						<span class="neighbor-name">
+							{{neighbor.node.name}}
+						</span>
+						<span *ngIf="i == vertex.neighbors.length - 1">
+							&#8628;
+						</span>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</figure>

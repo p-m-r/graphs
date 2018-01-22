@@ -1,0 +1,23 @@
+<table class="incidence-matrix" *ngIf="graph">
+	<thead>
+		<tr>
+			<td></td>
+			<td></td>
+			<td [attr.colspan]="graph.numberOfVertices" class="header">vertices</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td class="header" [attr.width]="colWidth" *ngFor="let vertex of graph.vertices">{{vertex.name}}</td>
+		</tr>
+	</thead>
+	<tbody>
+		<tr> 
+			<th [attr.rowspan]="edges.length + 1" class="vertical-header">edges</th>
+		</tr>
+		<tr *ngFor="let edge of edges; let i = index">
+			<th>{{i + 1}}:</th>
+			<td [attr.width]="colWidth" *ngFor="let vertex of graph.vertices">{{getEdgeWeight(vertex, edge)}}</td>
+		</tr>
+	</tbody>
+</table>
